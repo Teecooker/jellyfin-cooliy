@@ -1,7 +1,7 @@
 services:
   headscale:
     image: 'headscale/headscale:latest'
-    container_name: headscale-v8ggo0kg8w0o84gg8wko4gkc-223132233552
+    container_name: headscale-v8ggo0kg8w0o84gg8wko4gkc
     restart: unless-stopped
     entrypoint:
       - /bin/sh
@@ -16,7 +16,7 @@ services:
       - coolify.version=4.0.0-beta.463
       - coolify.applicationId=20
       - coolify.type=application
-      - coolify.name=headscale-v8ggo0kg8w0o84gg8wko4gkc-223132233552
+      - coolify.name=headscale-v8ggo0kg8w0o84gg8wko4gkc
       - coolify.resourceName=headscale-controller
       - coolify.projectName=jellyfin
       - coolify.serviceName=headscale-controller
@@ -27,7 +27,7 @@ services:
     environment:
       COOLIFY_BRANCH: '"main"'
       COOLIFY_RESOURCE_UUID: v8ggo0kg8w0o84gg8wko4gkc
-      COOLIFY_CONTAINER_NAME: headscale-v8ggo0kg8w0o84gg8wko4gkc-223132233552
+      COOLIFY_CONTAINER_NAME: headscale-v8ggo0kg8w0o84gg8wko4gkc
       SERVICE_NAME_HEADSCALE: headscale
     env_file:
       - .env
