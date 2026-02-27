@@ -1,21 +1,23 @@
-# config.yaml für Headscale
-server_url: https://headscale.deine-domain.de
+# Die öffentliche URL, unter der dein Headscale erreichbar ist
+server_url: https://headscale.securand.de
+
+# Auf welcher Adresse und Port der Server lauscht (im Container)
 listen_addr: 0.0.0.0:8080
 
+# Private Key für Noise-Protokoll (wird automatisch generiert)
 noise:
   private_key_path: /data/noise_private.key
 
+# Datenbank (SQLite reicht völlig)
 database:
   type: sqlite3
   sqlite:
     path: /data/headscale.db
 
+# IP-Bereich für die Clients (Tailscale-Standard)
 ip_prefixes:
   - 100.64.0.0/10
 
+# DNS-Konfiguration – einfach halten, um Fehler zu vermeiden
 dns:
-  nameservers:
-    global:
-      - 1.1.1.1
-      - 1.0.0.1
-  override_local_dns: true
+  override_local_dns: false
