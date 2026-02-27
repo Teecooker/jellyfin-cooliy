@@ -3,13 +3,11 @@ services:
     image: headscale/headscale:latest
     container_name: headscale
     restart: unless-stopped
+    command: ["serve"]  # WICHTIG: Startet den Server
     env_file:
-      - headscale.env
-    environment:
-      - HEADSCALE_NOISE_PRIVATE_KEY # Wird später automatisch gesetzt
-    # WICHTIG: Keine ports: Sektion! Coolify kümmert sich um das Routing.
+      - headscale.env   # Enthält alle Konfigurationsvariablen
     volumes:
-      - ./data:/data
-      - ./config:/etc/headscale
+      - ./data:/data    # Für Datenbank und Schlüssel
     cap_add:
       - NET_BIND_SERVICE
+    # Keine ports: - Coolify routet automatisch über die Domain
