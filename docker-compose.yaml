@@ -6,6 +6,5 @@ services:
     command: ["serve", "--config", "/etc/headscale/config.yaml"]
     volumes:
       - ./data:/data
-      - ./config.yaml:/etc/headscale/config.yaml:ro
-    cap_add:
+      - ./config.yaml:/etc/headscale/
       - NET_BIND_SERVICE
