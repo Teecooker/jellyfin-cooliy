@@ -1,13 +1,33 @@
-services:
+# config.yaml für Headscale
+server_url: https://headscale.deine-domain.de
+listen_addr: 0.0.0.0:8080
+
+noise:
+  private_key_path: /data/noise_private.key
+
+database:
+  type: sqlite3
+  sqlite:
+    path: /data/headscale.db
+
+ip_prefixes:
+  - 100.64.0.0/10
+
+dns:
+  nameservers:
+    global:
+      - 1.1.1.1
+      - 1.0.0.1
+  override_local_dns: true
+  services:
   headscale:
     image: headscale/headscale:latest
     container_name: headscale
     restart: unless-stopped
-    command: ["serve"]  # WICHTIG: Startet den Server
-    env_file:
-      - headscale.env   # Enthält alle Konfigurationsvariablen
+    command: ["serve"]
+    # Keine env_file mehr, da wir config.yaml nutzen
     volumes:
-      - ./data:/data    # Für Datenbank und Schlüssel
+      - ./data:/data                # Persistente Daten
+      - ./config.yaml:/etc/headscale/config.yaml:ro  # Config readonly mounten
     cap_add:
       - NET_BIND_SERVICE
-    # Keine ports: - Coolify routet automatisch über die Domain
