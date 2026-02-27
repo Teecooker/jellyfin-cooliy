@@ -3,6 +3,9 @@ services:
     image: 'headscale/headscale:latest'
     container_name: headscale-v8ggo0kg8w0o84gg8wko4gkc
     restart: unless-stopped
+    entrypoint:
+      - /bin/sh
+      - '-c /config/config.yaml'
     volumes:
       - '/data/coolify/applications/v8ggo0kg8w0o84gg8wko4gkc/data:/data'
       - '/data/coolify/applications/v8ggo0kg8w0o84gg8wko4gkc/config.yaml:/config/config.yaml:ro'
