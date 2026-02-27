@@ -3,10 +3,8 @@ services:
     image: headscale/headscale:latest
     container_name: headscale
     restart: unless-stopped
-    command: ["serve"]
-    # Keine env_file mehr, da wir config.yaml nutzen
+    command: ["serve", "--config", "/etc/headscale/config.yaml"]
     volumes:
-      - ./data:/data                # Persistente Daten
-      - ./config.yaml:/etc/headscale/config.yaml:ro  # Config readonly mounten
+      - ./data:/data   # Nur noch das Daten-Volume
     cap_add:
       - NET_BIND_SERVICE
